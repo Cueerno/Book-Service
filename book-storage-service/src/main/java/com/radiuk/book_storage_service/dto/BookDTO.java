@@ -13,6 +13,17 @@ public class BookDTO {
 
     private String author;
 
+
+    public BookDTO() {}
+
+    public BookDTO(String isbn, String title, String genre, String description, String author) {
+        this.isbn = isbn;
+        this.title = title;
+        this.genre = genre;
+        this.description = description;
+        this.author = author;
+    }
+
     public String getIsbn() {
         return isbn;
     }
