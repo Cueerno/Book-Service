@@ -20,7 +20,7 @@ To work correctly, run the two modules simultaneously through the terminal or th
 ### Step 5: Testing
 The project can be tested via Postman or via Swagger UI at the following URLs:
 
-book-storage-service: http://localhost:8080/swagger-ui/index.html
+book-storage-service: http://localhost:8080/swagger-ui/index.html<br/>
 book-tracker-service: http://localhost:7070/swagger-ui/index.html
 
 ## Application Endpoints:
