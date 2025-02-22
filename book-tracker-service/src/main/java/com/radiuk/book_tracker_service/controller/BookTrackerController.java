@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/book/tracker")
+@RequestMapping("/api/tracker/books")
 public class BookTrackerController {
 
     private final ModelMapper modelMapper;
@@ -27,12 +27,12 @@ public class BookTrackerController {
     }
 
 
-    @GetMapping("/available")
+    @GetMapping()
     public List<BookDTO> getAvailableBooks() {
         return bookTrackerService.findAvailableBooks().stream().map(this::convertToBookDTO).collect(Collectors.toList());
     }
 
-    @PostMapping("/new")
+    @PostMapping()
     public HttpStatus newEntryFromBookStorage(@RequestBody BookTrackerRequest bookTrackerRequest) {
 
         bookTrackerService.create(bookTrackerRequest.getBookId());
@@ -40,7 +40,7 @@ public class BookTrackerController {
         return HttpStatus.OK;
     }
 
-    @PatchMapping("/{id}/borrow")
+    @PatchMapping("/{id}")
     public HttpStatus borrowBook(@PathVariable int id) {
 
         bookTrackerService.borrow(id);
@@ -56,7 +56,7 @@ public class BookTrackerController {
         return HttpStatus.OK;
     }
 
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/{id}")
     public HttpStatus delete(@PathVariable int id) {
 
         bookTrackerService.delete(id);

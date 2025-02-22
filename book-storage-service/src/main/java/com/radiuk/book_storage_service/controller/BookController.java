@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/book/storage")
+@RequestMapping("/api/books")
 public class BookController {
 
     private final ModelMapper modelMapper;
@@ -30,7 +30,7 @@ public class BookController {
     }
 
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<BookDTO> getAllBooks() {
         return bookService.findAll().stream().map(this::convertToBookDTO).collect(Collectors.toList());
     }
@@ -45,7 +45,7 @@ public class BookController {
         return convertToBookDTO(bookService.findByIsbn(isbn));
     }
 
-    @PostMapping("/new")
+    @PostMapping()
     public HttpStatus createBook(@RequestBody BookDTO bookDTO) {
 
         Book bookToSave = convertToBook(bookDTO);
@@ -56,7 +56,7 @@ public class BookController {
         return HttpStatus.OK;
     }
 
-    @PatchMapping("/{id}/update")
+    @PatchMapping("/{id}")
     public HttpStatus updateBook(@RequestBody BookDTO bookDTO, @PathVariable int id) {
 
         bookService.update(convertToBook(bookDTO), id);
@@ -64,7 +64,7 @@ public class BookController {
         return HttpStatus.OK;
     }
 
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/{id}")
     public HttpStatus deleteBook(@PathVariable int id) {
 
         bookTrackerClient.deleteBookTracker(bookService.findById(id).getId());

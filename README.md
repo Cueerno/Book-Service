@@ -26,18 +26,18 @@ book-tracker-service: http://localhost:7070/swagger-ui/index.html
 ## Application Endpoints:
 
 #### book-storage-service: http://localhost:8080
-`GET    /api/book/storage/all`         - **list of all books**<br/>
-`GET    /api/book/storage/{id}`        - **book by id**<br/>
-`GET    /api/book/storage/isbn/{isbn}` - **book by isbn**<br/>
-`POST   /api/book/storage/new`         - **new book**<br/>
-`PATCH  /api/book/storage/{id}/update` - **update book**<br/>
-`DELETE /api/book/storage/{id}/delete` - **delete book**<br/>
+`GET    /api/books`         - **list of all books**<br/>
+`GET    /api/books/{id}`        - **book by id**<br/>
+`GET    /api/books/isbn/{isbn}` - **book by isbn**<br/>
+`POST   /api/books`         - **new book**<br/>
+`PATCH  /api/books/{id}` - **update book**<br/>
+`DELETE /api/books/{id}` - **delete book**<br/>
 <br/>
 
 
 #### book-tracker-service: http://localhost:7070
-`GET    /api/book/tracker/available`   - **list of all available books**<br/>
-`POST   /api/book/tracker/new`         - **new book entry**<br/>
-`PATCH  /api/book/tracker/{id}/borrow` - **borrow book**<br/>
-`PATCH  /api/book/tracker/{id}/return` - **return book**<br/>
-`DELETE /api/book/tracker/{id}/delete` - **delete book entry**<br/>
+`GET    /api/tracker/books`   - **list of all available books**<br/>
+`POST   /api/tracker/books`         - **new book entry**<br/>
+`PATCH  /api/tracker/books/{id}/borrow` - **borrow book**<br/>
+`PATCH  /api/tracker/books/{id}/return` - **return book**<br/>
+`DELETE /api/tracker/books/{id}` - **delete book entry**<br/>
