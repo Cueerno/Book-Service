@@ -65,7 +65,6 @@ public class BookTrackerServiceImpl implements BookTrackerService {
     }
 
     public void delete(int id) {
-        //bookTrackerRepository.deleteById(id); // hard delete
 
         BookTracker bookTrackerToDelete = bookTrackerRepository.findByBookId(id).get();
 

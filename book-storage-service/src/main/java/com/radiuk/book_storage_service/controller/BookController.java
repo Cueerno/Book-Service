@@ -56,14 +56,6 @@ public class BookController {
         return HttpStatus.OK;
     }
 
-//    @PutMapping("/{id}/full-update")
-//    public HttpStatus fullUpdateBook(@RequestBody BookDTO bookDTO, @PathVariable int id) {
-//
-//        bookService.update(convertToBook(bookDTO), id);
-//
-//        return HttpStatus.OK;
-//    }
-
     @PatchMapping("/{id}/update")
     public HttpStatus updateBook(@RequestBody BookDTO bookDTO, @PathVariable int id) {
 
@@ -74,10 +66,8 @@ public class BookController {
 
     @DeleteMapping("/{id}/delete")
     public HttpStatus deleteBook(@PathVariable int id) {
-        Book book = bookService.findById(id);
 
-        bookTrackerClient.deleteBookTracker(book.getId());
-        //bookService.delete(id); // hard delete
+        bookTrackerClient.deleteBookTracker(bookService.findById(id).getId());
 
         return HttpStatus.OK;
     }

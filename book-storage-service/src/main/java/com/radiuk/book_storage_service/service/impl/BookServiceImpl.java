@@ -43,9 +43,4 @@ public class BookServiceImpl implements BookService {
         updatedBook.setId(id);
         bookRepository.save(updatedBook);
     }
-
-//    @Transactional
-//    public void delete(int id) {
-//        bookRepository.deleteById(id);
-//    }
 }
