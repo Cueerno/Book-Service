@@ -3,7 +3,6 @@ package com.radiuk.book_tracker_service.controller;
 import com.radiuk.book_storage_service.client.BookTrackerRequest;
 import com.radiuk.book_storage_service.dto.BookDTO;
 import com.radiuk.book_storage_service.model.Book;
-import com.radiuk.book_tracker_service.model.BookTracker;
 import com.radiuk.book_tracker_service.service.BookTrackerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,10 +63,6 @@ public class BookTrackerController {
         return HttpStatus.OK;
     }
 
-
-    public Book convertToBook(BookDTO bookDTO) {
-        return modelMapper.map(bookDTO, Book.class);
-    }
 
     public BookDTO convertToBookDTO(Book book) {
         return modelMapper.map(book, BookDTO.class);

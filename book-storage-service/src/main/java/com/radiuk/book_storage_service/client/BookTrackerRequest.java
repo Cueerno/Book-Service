@@ -12,8 +12,4 @@ public class BookTrackerRequest {
     public Integer getBookId() {
         return BookId;
     }
-
-    public void setBookId(Integer bookId) {
-        BookId = bookId;
-    }
 }

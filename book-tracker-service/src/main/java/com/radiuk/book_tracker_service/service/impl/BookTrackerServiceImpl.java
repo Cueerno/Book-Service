@@ -68,7 +68,7 @@ public class BookTrackerServiceImpl implements BookTrackerService {
 
         BookTracker bookTrackerToDelete = bookTrackerRepository.findByBookId(id).get();
 
-        bookTrackerToDelete.setStatus("Deleted"); // soft delete
+        bookTrackerToDelete.setStatus("Deleted");
         bookTrackerRepository.save(bookTrackerToDelete);
     }
 }
