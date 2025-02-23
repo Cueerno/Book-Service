@@ -1,11 +1,11 @@
-package com.radiuk.book_tracker_service.config;
+package com.radiuk.book_storage_service.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class Beans {
+public class ModelMapperConfiguration {
 
     @Bean
     public ModelMapper modelMapper() {
