@@ -39,7 +39,7 @@ public class BookTrackerController {
         return HttpStatus.OK;
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/borrow")
     public HttpStatus borrowBook(@PathVariable int id) {
 
         bookTrackerService.borrow(id);
