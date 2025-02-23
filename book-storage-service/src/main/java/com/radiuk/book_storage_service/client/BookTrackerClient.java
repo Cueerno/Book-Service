@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient(name = "book-tracker-service", url = "http://localhost:7070")
 public interface BookTrackerClient {
 
-    @PostMapping("/api/book/tracker/new")
+    @PostMapping("/api/tracker/books")
     void createBookTracker(BookTrackerRequest request);
 
-    @DeleteMapping("/api/book/tracker/{id}/delete")
+    @DeleteMapping("/api/tracker/books/{id}")
     void deleteBookTracker(@PathVariable int id);
 }
