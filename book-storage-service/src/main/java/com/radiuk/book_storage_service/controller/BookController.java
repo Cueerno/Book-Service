@@ -8,10 +8,10 @@ import com.radiuk.book_storage_service.service.BookService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/books")
@@ -30,45 +30,45 @@ public class BookController {
 
 
     @GetMapping()
-    public List<BookDTO> getAllBooks() {
-        return bookService.findAll().stream().map(this::convertToBookDTO).collect(Collectors.toList());
+    public ResponseEntity<List<BookDTO>> getAllBooks() {
+        return ResponseEntity.status(HttpStatus.OK).body(bookService.findAll().stream().map(this::convertToBookDTO).toList());
     }
 
     @GetMapping("/{id}")
-    public BookDTO getBookById(@PathVariable int id) {
-        return convertToBookDTO(bookService.findById(id));
+    public ResponseEntity<BookDTO> getBookById(@PathVariable int id) {
+        return ResponseEntity.ok(convertToBookDTO(bookService.findById(id)));
     }
 
     @GetMapping("/isbn/{isbn}")
-    public BookDTO getBookByIsbn(@PathVariable String isbn) {
-        return convertToBookDTO(bookService.findByIsbn(isbn));
+    public ResponseEntity<BookDTO> getBookByIsbn(@PathVariable String isbn) {
+        return ResponseEntity.ok(convertToBookDTO(bookService.findByIsbn(isbn)));
     }
 
     @PostMapping()
-    public HttpStatus createBook(@RequestBody BookDTO bookDTO) {
+    public ResponseEntity<Void> createBook(@RequestBody BookDTO bookDTO) {
 
         Book bookToSave = convertToBook(bookDTO);
 
         bookService.create(bookToSave);
         bookTrackerClient.createBookTracker(new BookTrackerRequest(bookToSave.getId()));
 
-        return HttpStatus.OK;
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PatchMapping("/{id}")
-    public HttpStatus updateBook(@RequestBody BookDTO bookDTO, @PathVariable int id) {
+    public ResponseEntity<Void> updateBook(@RequestBody BookDTO bookDTO, @PathVariable int id) {
 
         bookService.update(convertToBook(bookDTO), id);
 
-        return HttpStatus.OK;
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public HttpStatus deleteBook(@PathVariable int id) {
+    public ResponseEntity<Void> deleteBook(@PathVariable int id) {
 
         bookTrackerClient.deleteBookTracker(bookService.findById(id).getId());
 
-        return HttpStatus.OK;
+        return ResponseEntity.noContent().build();
     }
 
 

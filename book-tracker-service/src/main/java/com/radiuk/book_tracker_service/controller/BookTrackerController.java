@@ -7,6 +7,7 @@ import com.radiuk.book_tracker_service.service.BookTrackerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,40 +28,40 @@ public class BookTrackerController {
 
 
     @GetMapping()
-    public List<BookDTO> getAvailableBooks() {
-        return bookTrackerService.findAvailableBooks().stream().map(this::convertToBookDTO).collect(Collectors.toList());
+    public ResponseEntity<List<BookDTO>> getAvailableBooks() {
+        return ResponseEntity.ok(bookTrackerService.findAvailableBooks().stream().map(this::convertToBookDTO).collect(Collectors.toList()));
     }
 
     @PostMapping()
-    public HttpStatus newEntryFromBookStorage(@RequestBody BookTrackerRequest bookTrackerRequest) {
+    public ResponseEntity<Void> newEntryFromBookStorage(@RequestBody BookTrackerRequest bookTrackerRequest) {
 
         bookTrackerService.create(bookTrackerRequest.getBookId());
 
-        return HttpStatus.OK;
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PatchMapping("/{id}/borrow")
-    public HttpStatus borrowBook(@PathVariable int id) {
+    public ResponseEntity<Void> borrowBook(@PathVariable int id) {
 
         bookTrackerService.borrow(id);
 
-        return HttpStatus.OK;
+        return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/{id}/return")
-    public HttpStatus returnBook(@PathVariable int id) {
+    public ResponseEntity<Void> returnBook(@PathVariable int id) {
 
         bookTrackerService.returnBook(id);
 
-        return HttpStatus.OK;
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public HttpStatus delete(@PathVariable int id) {
+    public ResponseEntity<Void> delete(@PathVariable int id) {
 
         bookTrackerService.delete(id);
 
-        return HttpStatus.OK;
+        return ResponseEntity.ok().build();
     }
 
 
