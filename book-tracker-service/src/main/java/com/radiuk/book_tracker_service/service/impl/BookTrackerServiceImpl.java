@@ -38,10 +38,10 @@ public class BookTrackerServiceImpl implements BookTrackerService {
 
     public void borrow(int id) {
         BookTracker bookTracker = new BookTracker();
-        BookTracker bookToBorow = bookTrackerRepository.findById(id).get();
+        BookTracker bookToBorrow = bookTrackerRepository.findById(id).get();
 
         bookTracker.setId(id);
-        bookTracker.setBookId(bookToBorow.getBookId());
+        bookTracker.setBookId(bookToBorrow.getBookId());
 
         bookTracker.setStatus("Borrowed");
         bookTracker.setBorrowedAt(LocalDateTime.now());
