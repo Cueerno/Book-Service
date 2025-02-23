@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
@@ -20,25 +19,25 @@ public class BookServiceImpl implements BookService {
         this.bookRepository = bookRepository;
     }
 
-
+    @Transactional(readOnly = true)
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Book findById(int id) {
         return bookRepository.findById(id).get();
     }
 
+    @Transactional(readOnly = true)
     public Book findByIsbn(String isbn) {
         return bookRepository.findByIsbn(isbn).get();
     }
 
-    @Transactional
     public void create(Book book) {
         bookRepository.save(book);
     }
 
-    @Transactional
     public void update(Book updatedBook, int id) {
         updatedBook.setId(id);
         bookRepository.save(updatedBook);
