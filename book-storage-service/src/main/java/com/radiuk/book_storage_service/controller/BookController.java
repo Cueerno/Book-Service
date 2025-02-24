@@ -78,7 +78,7 @@ public class BookController {
 
     @ExceptionHandler(BookNotFoundException.class)
     private ResponseEntity<BookErrorResponse> handleException(BookNotFoundException exception) {
-        BookErrorResponse response = new BookErrorResponse("Book with data not found", LocalDateTime.now());
+        BookErrorResponse response = new BookErrorResponse("Book with this data not found", LocalDateTime.now());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
