@@ -3,6 +3,9 @@ package com.radiuk.book_storage_service.controller;
 import com.radiuk.book_storage_service.client.BookTrackerClient;
 import com.radiuk.book_storage_service.client.BookTrackerRequest;
 import com.radiuk.book_storage_service.dto.BookDTO;
+import com.radiuk.book_storage_service.exception.BookErrorResponse;
+import com.radiuk.book_storage_service.exception.BookNotCreatedException;
+import com.radiuk.book_storage_service.exception.BookNotFoundException;
 import com.radiuk.book_storage_service.model.Book;
 import com.radiuk.book_storage_service.service.BookService;
 import org.modelmapper.ModelMapper;
@@ -11,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -69,6 +73,19 @@ public class BookController {
         bookTrackerClient.deleteBookTracker(bookService.findById(id).getId());
 
         return ResponseEntity.noContent().build();
+    }
+
+
+    @ExceptionHandler(BookNotFoundException.class)
+    private ResponseEntity<BookErrorResponse> handleException(BookNotFoundException exception) {
+        BookErrorResponse response = new BookErrorResponse("Book with data not found", LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(Exception.class)
+    private ResponseEntity<BookErrorResponse> handleException(BookNotCreatedException exception) {
+        BookErrorResponse response = new BookErrorResponse(exception.getMessage(), LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
 

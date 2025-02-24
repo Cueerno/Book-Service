@@ -1,5 +1,6 @@
 package com.radiuk.book_storage_service.service.impl;
 
+import com.radiuk.book_storage_service.exception.BookNotFoundException;
 import com.radiuk.book_storage_service.model.Book;
 import com.radiuk.book_storage_service.repository.BookRepository;
 import com.radiuk.book_storage_service.service.BookService;
@@ -26,12 +27,12 @@ public class BookServiceImpl implements BookService {
 
     @Transactional(readOnly = true)
     public Book findById(int id) {
-        return bookRepository.findById(id).get();
+        return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
     }
 
     @Transactional(readOnly = true)
     public Book findByIsbn(String isbn) {
-        return bookRepository.findByIsbn(isbn).get();
+        return bookRepository.findByIsbn(isbn).orElseThrow(BookNotFoundException::new);
     }
 
     public void create(Book book) {
