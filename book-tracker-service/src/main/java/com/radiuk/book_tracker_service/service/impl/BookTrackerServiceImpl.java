@@ -8,7 +8,7 @@ import com.radiuk.book_tracker_service.exception.NoAvailableBooksException;
 import com.radiuk.book_tracker_service.model.BookTracker;
 import com.radiuk.book_tracker_service.repository.BookTrackerRepository;
 import com.radiuk.book_tracker_service.service.BookTrackerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,15 +17,11 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@RequiredArgsConstructor
 @Transactional
 public class BookTrackerServiceImpl implements BookTrackerService {
 
     private final BookTrackerRepository bookTrackerRepository;
-
-    @Autowired
-    public BookTrackerServiceImpl(BookTrackerRepository bookTrackerRepository) {
-        this.bookTrackerRepository = bookTrackerRepository;
-    }
 
 
     @Transactional(readOnly = true)

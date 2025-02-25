@@ -1,11 +1,17 @@
 package com.radiuk.book_tracker_service.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "book_tracker")
+@Setter
+@Getter
+@NoArgsConstructor
 public class BookTracker {
 
     @Id
@@ -23,48 +29,4 @@ public class BookTracker {
 
     @Column(name = "return_at")
     private LocalDateTime returnAt;
-
-
-    public BookTracker() {}
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getBorrowedAt() {
-        return borrowedAt;
-    }
-
-    public void setBorrowedAt(LocalDateTime borrowedAt) {
-        this.borrowedAt = borrowedAt;
-    }
-
-    public LocalDateTime getReturnAt() {
-        return returnAt;
-    }
-
-    public void setReturnAt(LocalDateTime returnAt) {
-        this.returnAt = returnAt;
-    }
 }

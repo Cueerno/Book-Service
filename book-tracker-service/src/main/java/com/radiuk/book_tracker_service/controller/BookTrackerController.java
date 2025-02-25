@@ -10,8 +10,8 @@ import com.radiuk.book_tracker_service.exception.BookAlreadyTakenException;
 import com.radiuk.book_tracker_service.exception.BookNotAvailableException;
 import com.radiuk.book_tracker_service.exception.NoAvailableBooksException;
 import com.radiuk.book_tracker_service.service.BookTrackerService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,16 +22,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/tracker/books")
+@RequiredArgsConstructor
 public class BookTrackerController {
 
     private final ModelMapper modelMapper;
     private final BookTrackerService bookTrackerService;
-
-    @Autowired
-    public BookTrackerController(ModelMapper modelMapper, BookTrackerService bookTrackerService) {
-        this.modelMapper = modelMapper;
-        this.bookTrackerService = bookTrackerService;
-    }
 
 
     @GetMapping()
