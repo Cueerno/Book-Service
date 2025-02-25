@@ -8,8 +8,8 @@ import com.radiuk.book_storage_service.exception.BookNotCreatedException;
 import com.radiuk.book_storage_service.exception.BookNotFoundException;
 import com.radiuk.book_storage_service.model.Book;
 import com.radiuk.book_storage_service.service.BookService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,18 +19,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
+@RequiredArgsConstructor
 public class BookController {
 
     private final ModelMapper modelMapper;
     private final BookService bookService;
     private final BookTrackerClient bookTrackerClient;
-
-    @Autowired
-    public BookController(ModelMapper modelMapper, BookService bookService, BookTrackerClient bookTrackerClient) {
-        this.modelMapper = modelMapper;
-        this.bookService = bookService;
-        this.bookTrackerClient = bookTrackerClient;
-    }
 
 
     @GetMapping()

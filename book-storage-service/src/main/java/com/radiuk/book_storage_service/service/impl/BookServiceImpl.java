@@ -4,21 +4,18 @@ import com.radiuk.book_storage_service.exception.BookNotFoundException;
 import com.radiuk.book_storage_service.model.Book;
 import com.radiuk.book_storage_service.repository.BookRepository;
 import com.radiuk.book_storage_service.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
 
-    @Autowired
-    public BookServiceImpl(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     @Transactional(readOnly = true)
     public List<Book> findAll() {

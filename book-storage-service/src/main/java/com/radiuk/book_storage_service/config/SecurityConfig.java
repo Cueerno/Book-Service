@@ -1,7 +1,7 @@
 package com.radiuk.book_storage_service.config;
 
 import com.radiuk.book_storage_service.service.impl.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -20,17 +20,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final UserDetailsServiceImpl userDetailsServiceImpl;
-
     private final TokenFilter tokenFilter;
 
-    @Autowired
-    public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl, TokenFilter tokenFilter) {
-        this.userDetailsServiceImpl = userDetailsServiceImpl;
-        this.tokenFilter = tokenFilter;
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

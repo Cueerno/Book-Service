@@ -4,8 +4,8 @@ import com.radiuk.book_storage_service.dto.AuthDTO;
 import com.radiuk.book_storage_service.model.User;
 import com.radiuk.book_storage_service.security.JwtCore;
 import com.radiuk.book_storage_service.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,21 +16,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
     private final ModelMapper modelMapper;
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
     private final JwtCore jwtCore;
-
-    @Autowired
-    public AuthController(ModelMapper modelMapper, UserService userService, AuthenticationManager authenticationManager, JwtCore jwtCore) {
-        this.modelMapper = modelMapper;
-        this.userService = userService;
-        this.authenticationManager = authenticationManager;
-        this.jwtCore = jwtCore;
-    }
-
 
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody AuthDTO authDTO) {
