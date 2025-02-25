@@ -25,5 +25,8 @@ public class UserServiceImpl implements UserService {
         User userToSave = new User();
         userToSave.setPassword(passwordEncoder.encode(newUser.getPassword()));
         userRepository.save(userToSave);
+        String password = newUser.getPassword();
+        newUser.setPassword(passwordEncoder.encode(password));
+        userRepository.save(newUser);
     }
 }
