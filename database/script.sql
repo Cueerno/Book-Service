@@ -28,3 +28,11 @@ INSERT INTO book_tracker(book_id, status)
 VALUES (1, 'Available'),
 (2, 'Available'),
 (3, 'Available')
+
+
+create table users (
+    id serial primary key,
+    username varchar(100) not null,
+    role varchar(100) not null,
+    password varchar(100) not null
+)
