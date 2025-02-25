@@ -18,7 +18,18 @@ And you need to create tables in the database, the file with the SQL code is in 
 To work correctly, run the two modules simultaneously through the terminal or through the BookStorageServiceApplication and BookTrackerServiceApplication classes.
 
 ### Step 5: Testing
-The project can be tested via Postman or via Swagger UI at the following URLs:
+#### Step 5.1: Authentication
+##### Postman Authentication:
+you need to register at http://localhost:8080/auth/registration, then authenticate at http://localhost:8080/auth/login.
+After that JWT token will be generated for you and you will need to paste it into the "Bearer token" field in the Postman,
+and you will be able to send requests to the book-storage-service.
+
+##### Swagger Authentication:
+you need to register at http://localhost:8080/auth/registration, then authenticate at http://localhost:8080/auth/login.
+After that JWT token will be generated for you and you will need to paste it into the: "Authorize" -> "Value" field in the browser,
+and you will be able to send requests to the book-storage-service.
+
+The project can be tested via Swagger UI at the following URLs:
 
 book-storage-service: http://localhost:8080/swagger-ui/index.html<br/>
 book-tracker-service: http://localhost:7070/swagger-ui/index.html
@@ -26,14 +37,16 @@ book-tracker-service: http://localhost:7070/swagger-ui/index.html
 ## Application Endpoints:
 
 #### book-storage-service: http://localhost:8080
-`GET    /api/books`         - **list of all books**<br/>
+`GET    /api/books`             - **list of all books**<br/>
 `GET    /api/books/{id}`        - **book by id**<br/>
 `GET    /api/books/isbn/{isbn}` - **book by isbn**<br/>
-`POST   /api/books`         - **new book**<br/>
-`PATCH  /api/books/{id}` - **update book**<br/>
-`DELETE /api/books/{id}` - **delete book**<br/>
-<br/>
+`POST   /api/books`             - **new book**<br/>
+`PATCH  /api/books/{id}`        - **update book**<br/>
+`DELETE /api/books/{id}`        - **delete book**<br/>
 
+`POST   /auth/registration`     - **registration in the book-service**<br/>
+`POST   /auth/login`            - **login in the book-service**<br/>
+<br/>
 
 #### book-tracker-service: http://localhost:7070
 `GET    /api/tracker/books`   - **list of all available books**<br/>
