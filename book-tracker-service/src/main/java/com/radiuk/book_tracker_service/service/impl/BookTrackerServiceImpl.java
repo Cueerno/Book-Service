@@ -29,11 +29,10 @@ public class BookTrackerServiceImpl implements BookTrackerService {
         List<Book> availableBooks = bookTrackerRepository.findAvailableBooks();
 
         if (availableBooks.isEmpty()) {
-            System.out.println("No available books found");
             throw new NoAvailableBooksException("No available books found.");
         }
 
-        return bookTrackerRepository.findAvailableBooks();
+        return availableBooks;
     }
 
     public void create(int id) {
