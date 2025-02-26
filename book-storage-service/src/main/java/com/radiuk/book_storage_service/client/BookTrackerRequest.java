@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class BookTrackerRequest {
 
-    private Integer BookId;
+    private Integer bookId;
 }
