@@ -14,7 +14,10 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new io.swagger.v3.oas.models.info.Info().title("Book Storage Service"))
                 .addSecurityItem(new io.swagger.v3.oas.models.security.SecurityRequirement().addList("bearerAuth"))
-                .components(new Components().addSecuritySchemes("q", new SecurityScheme()
-                        .name("bearerAuth").type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
+                .components(new Components().addSecuritySchemes("bearerAuth", new SecurityScheme()
+                        .name("bearerAuth")
+                        .type(SecurityScheme.Type.HTTP)
+                        .scheme("bearer")
+                        .bearerFormat("JWT")));
     }
 }
