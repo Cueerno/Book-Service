@@ -11,7 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,6 +24,7 @@ public class AuthController {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
     private final JwtCore jwtCore;
+    private final UserDetailsService userDetailsService;
 
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody AuthDTO authDTO) {
@@ -34,15 +36,8 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthDTO authDTO) {
-        Authentication authentication;
-        try {
-            authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authDTO.getUsername(), authDTO.getPassword()));
-        }
-        catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
-        }
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtCore.generateToken(authentication);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(authDTO.getUsername());
+        String token = jwtCore.generateToken(userDetails);
         System.out.println(token);
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
