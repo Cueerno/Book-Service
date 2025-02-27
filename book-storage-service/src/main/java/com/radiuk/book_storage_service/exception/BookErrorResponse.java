@@ -1,7 +1,12 @@
 package com.radiuk.book_storage_service.exception;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class BookErrorResponse {
     private String message;
 
@@ -9,22 +14,6 @@ public class BookErrorResponse {
 
     public BookErrorResponse(String message, LocalDateTime messageTime) {
         this.message = message;
-        this.messageTime = messageTime;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public LocalDateTime getMessageTime() {
-        return messageTime;
-    }
-
-    public void setMessageTime(LocalDateTime messageTime) {
         this.messageTime = messageTime;
     }
 }
