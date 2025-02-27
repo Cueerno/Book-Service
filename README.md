@@ -16,22 +16,7 @@ Import the project into your favorite IDE:
 *Ensure that the project is correctly imported and that all dependencies are properly downloaded.*
 
 
-### Step 3: Database setup
-This project uses PostgreSQL as the database. However, you can configure it to work with other RDBMS by modifying the
-database connection settings in the application.properties file for each microservice.
-
-#### Step 3.1
-Open the application.properties file in both the book-storage-service and book-tracker-service directories.
-Modify the following properties according to your environment:
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/book_service
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-spring.datasource.driver-class-name=org.postgresql.Driver
-```
-
-
-### Step 4: Running docker container
+### Step 3: Running docker container
 The project uses Docker to simplify running the application.
 1. Ensure that Docker and Docker Compose are installed on your system.
 2. In your terminal, navigate to the root of the project directory (where the docker-compose.yml file is located).
@@ -53,7 +38,7 @@ docker-compose down -v
 This command will stop and remove the containers, networks, and volumes.
 
 
-### Step 5: Launching the project
+### Step 4: Launching the project
 You need to run both microservices to have a fully functional application.
 You can do this in one of two ways:
 1. Run via the IDE:
@@ -71,8 +56,8 @@ Navigate to the BookStorageServiceApplication and BookTrackerServiceApplication 
 Both services should now be running locally.
 
 
-### Step 6: Testing
-#### Step 6.1: Authentication
+### Step 5: Testing
+#### Step 5.1: Authentication
 ##### Postman Authentication:
 1. Register a new user by sending a POST request to `http://localhost:8080/auth/registration` with the necessary data.
 2. Then, authenticate by sending a POST request to `http://localhost:8080/auth/login` with your credentials.
@@ -88,7 +73,7 @@ Both services should now be running locally.
 5. You will now be able to send requests with authorization to the `book-storage-service` via Swagger.
 
 
-### Step 6: Swagger UI
+### Step 7: Swagger UI
 You can test the application via Swagger UI by visiting the following URLs:
 
 book-storage-service: http://localhost:8080/swagger-ui/index.html
