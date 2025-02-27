@@ -1,5 +1,6 @@
 package com.radiuk.book_storage_service.service.impl;
 
+import com.radiuk.book_storage_service.model.Role;
 import com.radiuk.book_storage_service.model.User;
 import com.radiuk.book_storage_service.repository.UserRepository;
 import com.radiuk.book_storage_service.service.UserService;
@@ -16,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     public void registration(User newUser) {
         String password = newUser.getPassword();
-        newUser.setRole("USER");
+        newUser.setRole(Role.ROLE_USER);
         newUser.setPassword(passwordEncoder.encode(password));
         userRepository.save(newUser);
     }

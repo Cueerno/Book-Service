@@ -1,7 +1,9 @@
 package com.radiuk.book_storage_service.security;
 
+import com.radiuk.book_storage_service.model.Role;
 import com.radiuk.book_storage_service.model.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -12,24 +14,27 @@ public class UserDetailsImpl implements UserDetails {
     private Integer id;
     private String username;
     private String password;
+    private Role role;
 
-    public UserDetailsImpl(Integer id, String username, String password) {
+    public UserDetailsImpl(Integer id, String username, String password, Role role) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public static UserDetailsImpl build(User user) {
         return new UserDetailsImpl(
                 user.getId(),
                 user.getUsername(),
-                user.getPassword()
+                user.getPassword(),
+                user.getRole()
         );
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
